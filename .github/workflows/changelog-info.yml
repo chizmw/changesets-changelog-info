@@ -1,0 +1,32 @@
+---
+# .github/workflows/auto-author-assign.yml
+name: Peek At Changelog Info
+
+# yamllint disable-line rule:truthy
+on:
+  - pull_request
+
+jobs:
+  changelog-peek:
+    name: Changeset Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      # LOCAL HACK TO RUN SCRIPT UNTIL WE HAVE SOMETHING MORE GENERAL
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Get Changelog Entry
+        shell: bash
+        run: |
+          python helper/last-change.py
+
+      - name: Print the changelog
+        # yamllint disable rule:line-length
+        run: |
+          cat relinfo.md >> $GITHUB_STEP_SUMMARY

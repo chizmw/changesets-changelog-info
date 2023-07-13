@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.2
+
+### Patch Changes
+
+- add helper/last-change.py ([#4](https://github.com/chizmw/changesets-changelog-info/pull/4))
+
 ## 0.0.1
 
 ### Patch Changes

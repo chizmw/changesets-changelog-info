@@ -1,0 +1,49 @@
+---
+name: Github Release
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    tags:
+      - v*
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # we should try to work out if we can sensibly get the changeblob
+      # relevant to the release
+
+      # LOCAL HACK TO RUN SCRIPT UNTIL WE HAVE SOMETHING MORE GENERAL
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Get Changelog Entry
+        shell: bash
+        run: |
+          python helper/last-change.py
+
+      - name: Print the changelog
+        # yamllint disable rule:line-length
+        run: |
+          cat relinfo.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+          body_path: relinfo.md

@@ -1,3 +1,7 @@
+import os
+import sys
+
+
 def parse_changelog(changelog):
     lines = changelog.split("\n")
     version = None
@@ -31,30 +35,31 @@ with open("CHANGELOG.md", "r", encoding="utf-8") as f:
 
 parsed_info = parse_changelog(changelog_text)
 
-# print to a file
-with open("relinfo.md", "w", encoding="utf-8") as relinfo:
-    # only if there are patch changes
-    if parsed_info["changes"]["patch_changes"]:
-        print("### Patch Changes\n", file=relinfo)
-        for change in parsed_info["changes"]["patch_changes"]:
-            print(f"- {change}", file=relinfo)
+# build a string with the changes
+markdown_block = ""
+if parsed_info["changes"]["patch_changes"]:
+    markdown_block += "### Patch Changes\n"
+    for change in parsed_info["changes"]["patch_changes"]:
+        markdown_block += f"- {change}\n"
+if parsed_info["changes"]["minor_changes"]:
+    markdown_block += "\nMinor Changes:\n"
+    for change in parsed_info["changes"]["minor_changes"]:
+        markdown_block += f"- {change}\n"
+if parsed_info["changes"]["major_changes"]:
+    markdown_block += "\nMajor Changes:\n"
+    for change in parsed_info["changes"]["major_changes"]:
+        markdown_block += f"- {change}\n"
 
-    if parsed_info["changes"]["minor_changes"]:
-        print("\nMinor Changes:", file=relinfo)
-        for change in parsed_info["changes"]["minor_changes"]:
-            print(f"- {change}", file=relinfo)
 
-    if parsed_info["changes"]["major_changes"]:
-        print("\nMajor Changes:", file=relinfo)
-        for change in parsed_info["changes"]["major_changes"]:
-            print(f"- {change}", file=relinfo)
-
-    # if there are no changes
-    if (
-        not parsed_info["changes"]["patch_changes"]
-        and not parsed_info["changes"]["minor_changes"]
-        and not parsed_info["changes"]["major_changes"]
-    ):
-        print(
-            f"> No changes detected for version {parsed_info['version']}", file=relinfo
-        )
+# if we have an env variable named GITHUB_OUTPUT, we are running in github
+# actions and should use that as a file to append to, othwerwise just print to
+# stdout
+if "GITHUB_OUTPUT" in os.environ:
+    with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+        # we know it's likely to be multiline, so we need to use a little magic
+        # that we found in https://github.com/github/docs/issues/21529
+        f.write("changeentry<<EOF\n")
+        f.write(f"{markdown_block}\n")
+        f.write("EOF\n")
+else:
+    sys.stdout.write(f"[set-output] changeentry:\n{markdown_block}")

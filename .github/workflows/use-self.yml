@@ -1,0 +1,29 @@
+---
+name: Test Ourself
+
+# yamllint disable-line rule:truthy
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-ourself:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Get Change Info
+        uses: ./
+        id: change
+      - name: Show Change Info
+        shell: bash
+        # yamllint disable rule:line-length
+        run: |
+          cat <<'EOInfo' >> $GITHUB_STEP_SUMMARY
+          ## Last Change Entry
+
+          ```markdown
+          ${{ steps.change.outputs.last-change-entry }}
+          ```
+          EOInfo

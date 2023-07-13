@@ -14,7 +14,7 @@ permissions: read-all
 jobs:
   release:
     # IMPORTANT: prevent this action from running on forks
-    if: github.repository == 'chizmw/changeset-sandbox'
+    if: github.repository == 'chizmw/changesets-changelog-info'
     permissions:
       contents: write # to create release (changesets/action)
       pull-requests: write # to create pull request (changesets/action)

@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.4
+
+### Patch Changes
+
+- fix github-release.yml ([#8](https://github.com/chizmw/changesets-changelog-info/pull/8))
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.3
+
+### Patch Changes
+
+- add "yarn run cs-add" and "yarn run cs-status" ([#6](https://github.com/chizmw/changesets-changelog-info/pull/6))
+
+- add action.yml and workflows/use-self.yml ([#6](https://github.com/chizmw/changesets-changelog-info/pull/6))
+
 ## 0.0.2
 
 ### Patch Changes

@@ -42,4 +42,4 @@ runs:
       run: |
         python helper/last-change.py \
           --changelog ${{ inputs.changelog }} \
-          --version ${{ inputs.version }}
+          --get-version version ${{ inputs.version }}

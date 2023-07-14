@@ -17,11 +17,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # we should try to work out if we can sensibly get the changeblob
-      # relevant to the release
-
-      # LOCAL HACK TO RUN SCRIPT UNTIL WE HAVE SOMETHING MORE GENERAL
-
       # we use ourself to get the information for the release
       - name: Get Change Info
         uses: ./

@@ -21,7 +21,7 @@ jobs:
       # we use this in the README as an example
       - name: Last Change Entry
         run: |
-          echo ${{ steps.get-changelog-info.outputs.last-change-entry }}
+          echo "${{ steps.get-changelog-info.outputs.last-change-entry }}"
 
       # we also use this in the README as an example
       - name: Last Change Version

@@ -1,5 +1,15 @@
 # changesets-changelog-info
 
+## 0.0.5
+
+### Patch Changes
+
+- generate debugging output if ACTIONS_RUNNER_DEBUG is set ([#11](https://github.com/chizmw/changesets-changelog-info/pull/11))
+
+- fix action args when calling helper script ([#12](https://github.com/chizmw/changesets-changelog-info/pull/12))
+
+- update action to pass input options to cli helper ([#11](https://github.com/chizmw/changesets-changelog-info/pull/11))
+
 ## 0.0.4
 
 ### Patch Changes

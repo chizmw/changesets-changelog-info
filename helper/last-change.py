@@ -1,6 +1,13 @@
 import os
 import sys
 
+ACTION_DEBUG: bool = len(os.environ.get("ACTIONS_RUNNER_DEBUG", "")) > 0
+
+
+def gh_debug(args, **kwargs):
+    if ACTION_DEBUG:
+        print(f"::debug::{args}", **kwargs)
+
 
 def parse_changelog(changelog):
     lines = changelog.split("\n")
@@ -16,6 +23,7 @@ def parse_changelog(changelog):
                 break
             else:
                 version = line.replace("## ", "")
+                gh_debug(f"found version: {version}")
                 changes = {
                     "patch_changes": [],
                     "minor_changes": [],
@@ -23,8 +31,11 @@ def parse_changelog(changelog):
                 }
         elif line.startswith("### "):
             current_section = line.replace("### ", "").lower().replace(" ", "_")
+            gh_debug(f"found section: {current_section}")
         elif version and line.startswith("-") and current_section:
-            changes[current_section].append(line.replace("- ", ""))
+            line = line.replace("- ", "")
+            changes[current_section].append(line)
+            gh_debug(f"found '{current_section}' change: {line}")
 
     return {"version": version, "changes": changes}
 

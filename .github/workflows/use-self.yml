@@ -16,17 +16,17 @@ jobs:
 
       - name: Get Change Info
         uses: ./
-        id: get-changelog-entry
+        id: get-changelog-info
 
       # we use this in the README as an example
       - name: Last Change Entry
         run: |
-          echo ${{ steps.get-changelog-entry.outputs.last-change-entry }}
+          echo ${{ steps.get-changelog-info.outputs.last-change-entry }}
 
       # we also use this in the README as an example
       - name: Last Change Version
         run: |
-          echo ${{ steps.get-changelog-entry.outputs.last-change-version }}
+          echo ${{ steps.get-changelog-info.outputs.last-change-version }}
 
       - name: Show Change Info
         shell: bash
@@ -35,13 +35,13 @@ jobs:
           cat <<'EOInfo' >> $GITHUB_STEP_SUMMARY
           ## Last Change Entry
 
-          Version: ${{ steps.get-changelog-entry.outputs.last-change-version }}
+          Version: ${{ steps.get-changelog-info.outputs.last-change-version }}
 
           ```markdown
-          ${{ steps.get-changelog-entry.outputs.last-change-entry }}
+          ${{ steps.get-changelog-info.outputs.last-change-entry }}
           ```
           EOInfo
 
       - name: Fail If Empty
-        if: steps.get-changelog-entry.outputs.last-change-entry == ''
+        if: steps.get-changelog-info.outputs.last-change-entry == ''
         run: exit 1

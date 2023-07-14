@@ -2,13 +2,13 @@ import argparse
 import os
 import sys
 
-ACTION_DEBUG: bool = len(os.environ.get("ACTIONS_STEP_DEBUG", "")) > 0
+ACTION_DEBUG: bool = len(os.environ.get("CHANGESET_INFO_DEBUG", "")) > 0
 args: argparse.Namespace
 
 
 def gh_debug(args, **kwargs):
     if ACTION_DEBUG:
-        print(f"::debug::{args}", **kwargs)
+        print(f"::info::{args}", **kwargs)
 
 
 def parse_changelog(changelog):

@@ -17,6 +17,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Get Package Version
+        id: get-version
+        run: |
+          echo version="$(cat package.json |jq -r '.version')" >> $GITHUB_OUTPUT
+
+      - name: Show Version
+        run: |
+          echo ${{ steps.get-version.outputs.version }}
+
       # we use ourself to get the information for the release
       - name: Get Change Info
         uses: ./
@@ -28,7 +37,7 @@ jobs:
         if: steps.get-changelog-entry.outputs.last-change-entry != ''
         with:
           body: ${{ steps.get-changelog-entry.outputs.last-change-entry }}
-          tag_name: ${{ github.ref }}
-          name: ${{ github.ref }}
+          tag_name: v${{ steps.get-version.outputs.version }}
+          name: ${{ steps.get-version.outputs.version }}
           draft: false
           prerelease: false

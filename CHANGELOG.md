@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.7
+
+### Patch Changes
+
+- use version from package.json for tag input to create release ([#16](https://github.com/chizmw/changesets-changelog-info/pull/16))
+
 ## 0.0.6
 
 ### Patch Changes

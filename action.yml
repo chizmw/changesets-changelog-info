@@ -40,4 +40,6 @@ runs:
       id: get-changelog-entry
       shell: bash
       run: |
-        python helper/last-change.py
+        python helper/last-change.py \
+          --changelog ${{ inputs.changelog }} \
+          --version ${{ inputs.version }}

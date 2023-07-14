@@ -8,7 +8,7 @@ args: argparse.Namespace
 
 def gh_debug(args, **kwargs):
     if ACTION_DEBUG:
-        print(f"::debug::{args}", **kwargs)
+        print(f"::info::{args}", **kwargs)
 
 
 def parse_changelog(changelog):

@@ -1,7 +1,9 @@
+import argparse
 import os
 import sys
 
 ACTION_DEBUG: bool = len(os.environ.get("ACTIONS_RUNNER_DEBUG", "")) > 0
+args: argparse.Namespace
 
 
 def gh_debug(args, **kwargs):
@@ -74,10 +76,41 @@ def output_markdown_block(markdown_block: str) -> None:
         sys.stdout.write(f"[set-output] changeentry:\n{markdown_block}")
 
 
-# read CHANGELOG.md and save in changelog_text
-with open("CHANGELOG.md", "r", encoding="utf-8") as f:
-    changelog_text = f.read()
+def parse_args():
+    parser = argparse.ArgumentParser(
+        prog="Change Entry Info",
+        description="helper for chizmw/changesets-changelog-info",
+    )
 
-parsed_info = parse_changelog(changelog_text)
-markdown_block = build_markdown_block(parsed_info)
-output_markdown_block(markdown_block)
+    parser.add_argument(
+        "--changelog",
+        type=str,
+        default="CHANGELOG.md",
+        help="Path to CHANGELOG.md file",
+    )
+
+    parser.add_argument(
+        "--get-version",
+        type=str,
+        default="latest",
+        help="get information about a specific version",
+    )
+
+    args = parser.parse_args()
+    return args
+
+
+def main():
+    # read CHANGELOG.md and save in changelog_text
+    gh_debug(f"reading {args.changelog}")
+    with open(args.changelog, "r", encoding="utf-8") as f:
+        changelog_text = f.read()
+
+    parsed_info = parse_changelog(changelog_text)
+    markdown_block = build_markdown_block(parsed_info)
+    output_markdown_block(markdown_block)
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    main()

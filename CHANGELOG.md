@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.8
+
+### Patch Changes
+
+- make our debugging autonomous from ACTIONS_STEP_DEBUG ([#19](https://github.com/chizmw/changesets-changelog-info/pull/19))
+
+- fix: release name should also prefix version with 'v' ([#18](https://github.com/chizmw/changesets-changelog-info/pull/18))
+
 ## 0.0.7
 
 ### Patch Changes

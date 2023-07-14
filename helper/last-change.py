@@ -61,7 +61,7 @@ def build_markdown_block(parsed_info: dict) -> str:
     return markdown_block
 
 
-def output_markdown_block(markdown_block: str) -> None:
+def do_changeentry_output(markdown_block: str) -> None:
     # if we have an env variable named GITHUB_OUTPUT, we are running in github
     # actions and should use that as a file to append to, othwerwise just print to
     # stdout
@@ -74,6 +74,23 @@ def output_markdown_block(markdown_block: str) -> None:
             f.write("EOF\n")
     else:
         sys.stdout.write(f"[set-output] changeentry:\n{markdown_block}")
+
+
+def do_version_output(version: str) -> None:
+    # if we have an env variable named GITHUB_OUTPUT, we are running in github
+    # actions and should use that as a file to append to, othwerwise just print to
+    # stdout
+
+    # we do something a little weird to make certain we set a v*
+    # format, but removing any/all leading v's then adding one back
+    version = version.lstrip("v")
+
+    if "GITHUB_OUTPUT" in os.environ:
+        with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            # this is nice and simple - it's a single line, so we can just write it
+            f.write(f"changeversion=v{version}\n")
+    else:
+        sys.stdout.write(f"[set-output] changeversion=v{version}\n")
 
 
 def parse_args():
@@ -108,7 +125,8 @@ def main():
 
     parsed_info = parse_changelog(changelog_text)
     markdown_block = build_markdown_block(parsed_info)
-    output_markdown_block(markdown_block)
+    do_version_output(parsed_info["version"])
+    do_changeentry_output(markdown_block)
 
 
 if __name__ == "__main__":

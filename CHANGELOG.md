@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.15
+
+### Patch Changes
+
+- fix version in package.json ([#22](https://github.com/chizmw/changesets-changelog-info/pull/22))
+
 ## 0.0.8
 
 ### Patch Changes

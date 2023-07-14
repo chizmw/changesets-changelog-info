@@ -20,15 +20,15 @@ jobs:
       # we use ourself to get the information for the release
       - name: Get Change Info
         uses: ./
-        id: change
+        id: get-changelog-entry
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GH Release
+        uses: softprops/action-gh-release@v1
+        # only run if we have a changelog entry
+        if: steps.get-changelog-entry.outputs.last-change-entry != ''
         with:
+          body: ${{ steps.get-changelog-entry.outputs.last-change-entry }}
           tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          name: ${{ github.ref }}
           draft: false
           prerelease: false
-          body: ${{ steps.change.outputs.last-change-entry }}

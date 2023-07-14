@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.6
+
+### Patch Changes
+
+- fix: use ACTIONS_STEP_DEBUG (not ACTIONS_RUNNER_DEBUG) ([#14](https://github.com/chizmw/changesets-changelog-info/pull/14))
+
+- change release action used (to one not archived) ([#14](https://github.com/chizmw/changesets-changelog-info/pull/14))
+
 ## 0.0.5
 
 ### Patch Changes

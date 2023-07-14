@@ -38,6 +38,29 @@ If the need arises, the functionality may be extended.
 | default  | `latest` |
 | required | `true`   |
 
+### Outputs
+
+#### `last-change-entry`
+
+The change entry for the version from the changelog.
+
+```yaml
+- name: Last Change Entry
+  run: |
+    echo ${{ steps.get-changelog-entry.outputs.last-change-entry }}
+```
+
+#### `last-change-version`
+
+The version number corresponding to the entry from the changelog.
+This can be passed to a release action workflow (see below).
+
+```yaml
+- name: Last Change Version
+  run: |
+    echo ${{ steps.get-changelog-entry.outputs.last-change-version }}
+```
+
 ## Usage
 
 ### Action Step

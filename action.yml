@@ -19,6 +19,10 @@ outputs:
     description: The description of the last change
     value: ${{ steps.get-changelog-entry.outputs.changeentry }}
 
+  last-change-version:
+    description: The version of the last change
+    value: ${{ steps.get-changelog-entry.outputs.changeversion }}
+
 runs:
   using: composite
   steps:

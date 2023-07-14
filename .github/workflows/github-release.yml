@@ -17,27 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Get Package Version
-        id: get-version
-        run: |
-          echo version="$(cat package.json |jq -r '.version')" >> $GITHUB_OUTPUT
-
-      - name: Show Version
-        run: |
-          echo ${{ steps.get-version.outputs.version }}
-
       # we use ourself to get the information for the release
       - name: Get Change Info
         uses: ./
-        id: get-changelog-entry
+        id: get-changelog-info
 
       - name: Create GH Release
         uses: softprops/action-gh-release@v1
         # only run if we have a changelog entry
-        if: steps.get-changelog-entry.outputs.last-change-entry != ''
+        if: steps.get-changelog-info.outputs.last-change-entry != ''
         with:
-          body: ${{ steps.get-changelog-entry.outputs.last-change-entry }}
-          tag_name: v${{ steps.get-version.outputs.version }}
-          name: v${{ steps.get-version.outputs.version }}
+          body: ${{ steps.get-changelog-info.outputs.last-change-entry }}
+          tag_name: ${{ steps.get-changelog-info.outputs.last-change-version }}
+          name: ${{ steps.get-changelog-info.outputs.last-change-version }}
           draft: false
           prerelease: false

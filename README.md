@@ -38,6 +38,29 @@ If the need arises, the functionality may be extended.
 | default  | `latest` |
 | required | `true`   |
 
+### Outputs
+
+#### `last-change-entry`
+
+The change entry for the version from the changelog.
+
+```yaml
+- name: Last Change Entry
+  run: |
+    echo ${{ steps.get-changelog-info.outputs.last-change-entry }}
+```
+
+#### `last-change-version`
+
+The version number corresponding to the entry from the changelog.
+This can be passed to a release action workflow (see below).
+
+```yaml
+- name: Last Change Version
+  run: |
+    echo ${{ steps.get-changelog-info.outputs.last-change-version }}
+```
+
 ## Usage
 
 ### Action Step
@@ -67,6 +90,8 @@ If your change file is in a non-standard location:
 Create `.github/workflows/github-release.yml` in your project with the
 following content:
 
+<!-- markdownlint-disable MD013 -->
+
 ```yaml
 ---
 name: Github Release
@@ -88,7 +113,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Get Change Info
-        id: get-changelog-entry
+        id: get-changelog-info
         uses: chizmw/changesets-changelog-info@v0.0.4
 
       - name: Create Release
@@ -96,12 +121,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag_name: ${{ steps.get-changelog-info.outputs.last-change-version }}
+          release_name: ${{ steps.get-changelog-info.outputs.last-change-version }}
           draft: false
           prerelease: false
-          body: ${{ steps.get-changelog-entry.outputs.last-change-entry }}
+          body: ${{ steps.get-changelog-info.outputs.last-change-entry }}
 ```
+
+<!-- markdownlint-enable MD013 -->
 
 **NOTE:** using a `v*` tag as a release trigger requires some additions to your
 `changeset-release.yml` (or equivalent) workflow, to push the tags back to the

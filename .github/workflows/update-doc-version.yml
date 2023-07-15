@@ -1,5 +1,5 @@
 ---
-name: Post Release
+name: Update Doc Version
 
 # yamllint disable-line rule:truthy
 on:

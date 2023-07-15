@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.23
+
+### Patch Changes
+
+- setup git user in doc update action ([#40](https://github.com/chizmw/changesets-changelog-info/pull/40))
+
+- enable automerge on doc update PR ([#40](https://github.com/chizmw/changesets-changelog-info/pull/40))
+
 ## 0.0.22
 
 ### Patch Changes

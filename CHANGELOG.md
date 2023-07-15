@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.16
+
+### Patch Changes
+
+- change yarn repo (due to errors from registry.yarnpkg.com) ([#25](https://github.com/chizmw/changesets-changelog-info/pull/25))
+
+- add new action output value: last-change-version ([#24](https://github.com/chizmw/changesets-changelog-info/pull/24))
+
 ## 0.0.15
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.22
+
+### Patch Changes
+
+- use personal token for doc update ([#38](https://github.com/chizmw/changesets-changelog-info/pull/38))
+
 ## 0.0.21
 
 ### Patch Changes

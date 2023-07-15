@@ -47,34 +47,6 @@ jobs:
         uses: ./
         id: get-changelog-info
 
-      - name: Extract branch name
-        id: extract-branch
-        shell: bash
-        # yamllint disable-line rule:line-length
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-
-      - name: Update Version In Files
-        # https://github.com/changesets/action#custom-publishing
-        if: steps.changesets.outputs.hasChangesets == 'false'
-        shell: bash
-        # yamllint disable rule:line-length
-        run: |
-          latest_version="${{ steps.get-changelog-info.outputs.last-change-version }}"
-          files="README.md"
-
-          # replace the version "latest-v0.0.4-blue" with the latest
-          sed -i "s/latest-v.*-blue/latest-${latest_version}-blue/g" $files
-
-          # update any doc references to ourself; chizmw/changesets-changelog-info@v0.0.4
-          sed -i "s/chizmw\/changesets-changelog-info@v.*/chizmw\/changesets-changelog-info@${latest_version}/g" $files
-
-          # commit and push the changes
-          git config --global --add --bool push.autoSetupRemote true
-          git add $files
-          git commit -m "chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})"
-          git push
-        # yamllint enable rule:line-length
-
       - name: Push Tags
         # https://github.com/changesets/action#custom-publishing
         if: steps.changesets.outputs.hasChangesets == 'false'

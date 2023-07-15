@@ -46,6 +46,7 @@ jobs:
           commit-message: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})'
           base: ${{ github.event.repository.default_branch }}
           delete-branch: true
+          token: ${{ secrets.CHANGESETS_TOKEN }}
           # yamllint enable rule:line-length
 
       - uses: peter-evans/enable-pull-request-automerge@v3

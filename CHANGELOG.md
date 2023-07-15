@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.25
+
+### Patch Changes
+
+- specify branch for create-pull-request ([#44](https://github.com/chizmw/changesets-changelog-info/pull/44))
+
 ## 0.0.24
 
 ### Patch Changes

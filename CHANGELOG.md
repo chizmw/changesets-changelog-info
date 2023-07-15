@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.26
+
+### Patch Changes
+
+- fix value used for 'default branch' ([#46](https://github.com/chizmw/changesets-changelog-info/pull/46))
+
 ## 0.0.25
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.17
+
+### Patch Changes
+
+- update version references in README.md on changeset release ([#29](https://github.com/chizmw/changesets-changelog-info/pull/29))
+
+- update README to use non-archived release action ([#27](https://github.com/chizmw/changesets-changelog-info/pull/27))
+
 ## 0.0.16
 
 ### Patch Changes

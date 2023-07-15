@@ -69,6 +69,7 @@ jobs:
           sed -i "s/chizmw\/changesets-changelog-info@v.*/chizmw\/changesets-changelog-info@${latest_version}/g" $files
 
           # commit and push the changes
+          git config --global --add --bool push.autoSetupRemote true
           git add $files
           git commit -m "chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})"
           git push

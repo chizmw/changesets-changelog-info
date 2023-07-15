@@ -1,6 +1,6 @@
 # Github Workflow Action: Changesets Changelog Info
 
-![Version](https://img.shields.io/badge/latest-v0.0.4-blue)
+![Version](https://img.shields.io/badge/latest-v0.0.27-blue)
 
 ## Overview
 
@@ -72,7 +72,7 @@ recent (top of file) version.
 ```yaml
 - name: Get Changelog Entry
   id: get-changelog-entry
-  uses: chizmw/changesets-changelog-info@v0.0.4
+  uses: chizmw/changesets-changelog-info@v0.0.27
 ```
 
 If your change file is in a non-standard location:
@@ -80,7 +80,7 @@ If your change file is in a non-standard location:
 ```yaml
 - name: Get Changelog Entry
   id: get-changelog-entry
-  uses: chizmw/changesets-changelog-info@v0.0.4
+  uses: chizmw/changesets-changelog-info@v0.0.27
   with:
     changelog: path-to/my-change-file.md
 ```
@@ -114,7 +114,7 @@ jobs:
 
       - name: Get Change Info
         id: get-changelog-info
-        uses: chizmw/changesets-changelog-info@v0.0.4
+        uses: chizmw/changesets-changelog-info@v0.0.27
 
       - name: Create Github Release
         uses: softprops/action-gh-release@v1

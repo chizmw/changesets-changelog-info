@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.27
+
+### Patch Changes
+
+- use personal token for create PR step ([#48](https://github.com/chizmw/changesets-changelog-info/pull/48))
+
 ## 0.0.26
 
 ### Patch Changes

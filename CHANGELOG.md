@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.24
+
+### Patch Changes
+
+- remove manual commit steps from doc update ([#42](https://github.com/chizmw/changesets-changelog-info/pull/42))
+
 ## 0.0.23
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.1.0
+
+### Minor Changes
+
+- Stable enough to bump the minor version number ([#51](https://github.com/chizmw/changesets-changelog-info/pull/51))
+
 ## 0.0.27
 
 ### Patch Changes

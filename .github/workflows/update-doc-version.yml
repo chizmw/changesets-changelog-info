@@ -1,10 +1,11 @@
 ---
-name: Post Release
+name: Update Doc Version
 
-# yamllint disable rule:truthy
+# yamllint disable-line rule:truthy
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - v*
 
 jobs:
   readme-versions:

@@ -116,16 +116,16 @@ jobs:
         id: get-changelog-info
         uses: chizmw/changesets-changelog-info@v0.0.4
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Github Release
+        uses: softprops/action-gh-release@v1
+        # only run if we have a changelog entry
+        if: steps.get-changelog-info.outputs.last-change-entry != ''
         with:
+          body: ${{ steps.get-changelog-info.outputs.last-change-entry }}
           tag_name: ${{ steps.get-changelog-info.outputs.last-change-version }}
-          release_name: ${{ steps.get-changelog-info.outputs.last-change-version }}
+          name: ${{ steps.get-changelog-info.outputs.last-change-version }}
           draft: false
           prerelease: false
-          body: ${{ steps.get-changelog-info.outputs.last-change-entry }}
 ```
 
 <!-- markdownlint-enable MD013 -->

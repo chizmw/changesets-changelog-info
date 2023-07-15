@@ -43,10 +43,18 @@ jobs:
         # yamllint enable rule:line-length
 
       - name: Create Pull Request
+        id: create-pr
         uses: peter-evans/create-pull-request@v5
         with:
           # yamllint disable rule:line-length
           title: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})'
           commit-message: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})'
           delete-branch: true
+          # yamllint enable rule:line-length
+
+      - uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          # yamllint disable rule:line-length
+          token: ${{ secrets.SERVICE_ACCOUNT_GITHUB_TOKEN_EXPIRE_BAU }}
+          pull-request-number: ${{ steps.create-pr.outputs.pull-request-number }}
           # yamllint enable rule:line-length

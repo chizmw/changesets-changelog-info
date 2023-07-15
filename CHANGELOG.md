@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.0.18
+
+### Patch Changes
+
+- use hand-written "update version in README" workflow step ([#30](https://github.com/chizmw/changesets-changelog-info/pull/30))
+
+- small fixes for manual version update ([`bde3265`](https://github.com/chizmw/changesets-changelog-info/commit/bde32658dc555e6829a5aa224afb4640568f9c8c))
+
 ## 0.0.17
 
 ### Patch Changes

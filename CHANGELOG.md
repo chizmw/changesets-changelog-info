@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.19
+
+### Patch Changes
+
+- move 'doc version update' to post-release action ([#32](https://github.com/chizmw/changesets-changelog-info/pull/32))
+
 ## 0.0.18
 
 ### Patch Changes

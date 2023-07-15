@@ -42,6 +42,15 @@ jobs:
         with:
           title: Release Changeset (bake CHANGELOG.md)
 
+      - name: Update Version References
+        uses: pocket-apps/action-update-version@v1
+        # https://github.com/changesets/action#custom-publishing
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        with:
+          files: README.md
+          version-regexp: v\d+.\d+.\d+
+          repo-token: ${{ secrets.CHANGESETS_TOKEN }}
+
       - name: Push Tags
         # https://github.com/changesets/action#custom-publishing
         if: steps.changesets.outputs.hasChangesets == 'false'

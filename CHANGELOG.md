@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.21
+
+### Patch Changes
+
+- change to update README on tag, not release ([#36](https://github.com/chizmw/changesets-changelog-info/pull/36))
+
 ## 0.0.20
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.0.20
+
+### Patch Changes
+
+- use personal token for github release ([#34](https://github.com/chizmw/changesets-changelog-info/pull/34))
+
 ## 0.0.19
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "changesets-changelog-info",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "main": "index.js",
   "repository": "git@github.com:chizmw/changesets-changelog-info.git",
   "author": "Chisel <chisel@malik-wright.uk>",

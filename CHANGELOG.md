@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.1.1
+
+### Patch Changes
+
+- skip ci for the readme version update commit ([#56](https://github.com/chizmw/changesets-changelog-info/pull/56))
+
+- Create dependabot.yml ([#55](https://github.com/chizmw/changesets-changelog-info/pull/55))
+
 ## 0.1.0
 
 ### Minor Changes

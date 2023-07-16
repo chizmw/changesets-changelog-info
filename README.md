@@ -7,7 +7,7 @@
 [The Changesets workflow](https://github.com/changesets/changesets#readme) is a
 useful way to manage a project's CHANGELOG file.
 
-Unfortunately, it _does_ not\* follow the [_Keep a
+Unfortunately, it _does_ not follow the [_Keep a
 Changelog_](https://github.com/olivierlacan/keep-a-changelog#readme) standard
 
 This action was written to grab the release notes
@@ -149,3 +149,8 @@ Add the following after your `changesets/action` step:
 
 For an example of a Changeset Release workflow file you can view
 [.github/workflows/changeset-release.yml](.github/workflows/changeset-release.yml)
+
+## Further Reading
+
+- [Changeset Flow Overview](docs/changeset-flow-overview.md)
+- [Full Workflow Suggestion](docs/full-workflow-suggestion.md)

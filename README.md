@@ -142,9 +142,11 @@ Add the following after your `changesets/action` step:
   if: steps.changesets.outputs.hasChangesets == 'false'
   shell: bash
   run: |
-    version="$(cat package.json | jq -r '.version')"
-    git tag "v$version"
-    git push --tags
+    git tag ${{ steps.get-changelog-info.outputs.last-change-version }}
+    # this could fail in a merge without changesets
+    # (e.g. update README.md, merge)
+    # but that's a bit naughty anyway, so we'll let it fail
+    git push --tag
 ```
 
 For an example of a Changeset Release workflow file you can view

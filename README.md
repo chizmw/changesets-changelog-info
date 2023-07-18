@@ -152,6 +152,29 @@ Add the following after your `changesets/action` step:
 For an example of a Changeset Release workflow file you can view
 [.github/workflows/changeset-release.yml](.github/workflows/changeset-release.yml)
 
+## `secrets.CHANGESETS_TOKEN`
+
+From
+[Triggering a workflow from a workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow#triggering-a-workflow-from-a-workflow):
+
+> When you use the repository's GITHUB_TOKEN to perform tasks, events triggered
+> by the GITHUB_TOKEN will not create a new workflow run.
+>
+> If you do want to trigger a workflow from within a workflow run, you can use
+> a GitHub App installation access token or a personal access token instead of
+> GITHUB_TOKEN to trigger events that require a token.
+
+This project uses a personal access token called `CHANGESETS_TOKEN`.
+If you already have a
+[personal access token](https://github.com/settings/tokens)
+configured in your repo, or organization, you should replace any references to
+match the name of your secret.
+
+For your reference, `CHANGESETS_TOKEN` has been created as a _Classic Token_
+with the following permissions:
+
+- `repo`
+
 ## Further Reading
 
 - [Changeset Flow Overview](docs/changeset-flow-overview.md)

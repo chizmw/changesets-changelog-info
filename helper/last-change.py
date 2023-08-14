@@ -76,21 +76,26 @@ def do_changeentry_output(markdown_block: str) -> None:
         sys.stdout.write(f"[set-output] changeentry:\n{markdown_block}")
 
 
-def do_version_output(version: str) -> None:
+def do_version_output(version_no_v: str) -> None:
     # if we have an env variable named GITHUB_OUTPUT, we are running in github
     # actions and should use that as a file to append to, othwerwise just print to
     # stdout
 
     # we do something a little weird to make certain we set a v*
     # format, but removing any/all leading v's then adding one back
-    version = version.lstrip("v")
+    version_no_v = version_no_v.lstrip("v")
+    version_v = f"v{version_no_v}"
 
+    # print/set output with and without the v prefix
     if "GITHUB_OUTPUT" in os.environ:
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-            # this is nice and simple - it's a single line, so we can just write it
-            f.write(f"changeversion=v{version}\n")
+            # unlike the change entry, this is nice and simple - it's a single
+            # line, so we can just write it
+            f.write(f"changeversion_v={version_v}\n")
+            f.write(f"changeversion_no_v={version_no_v}\n")
     else:
-        sys.stdout.write(f"[set-output] changeversion=v{version}\n")
+        sys.stdout.write(f"[set-output] changeversion_v={version_v}\n")
+        sys.stdout.write(f"[set-output] changeversion_no_v={version_no_v}\n")
 
 
 def parse_args():

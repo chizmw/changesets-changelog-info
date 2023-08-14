@@ -85,12 +85,16 @@ def do_version_output(version: str) -> None:
     # format, but removing any/all leading v's then adding one back
     version = version.lstrip("v")
 
+    # print/set output with and without the v prefix
     if "GITHUB_OUTPUT" in os.environ:
         with open(os.environ["GITHUB_OUTPUT"], "a") as f:
-            # this is nice and simple - it's a single line, so we can just write it
-            f.write(f"changeversion=v{version}\n")
+            # unlike the change entry, this is nice and simple - it's a single
+            # line, so we can just write it
+            f.write(f"changeversion_v=v{version}\n")
+            f.write(f"changeversion_no_v=v{version}\n")
     else:
-        sys.stdout.write(f"[set-output] changeversion=v{version}\n")
+        sys.stdout.write(f"[set-output] changeversion_v=v{version}\n")
+        sys.stdout.write(f"[set-output] changeversion_no_v={version}\n")
 
 
 def parse_args():

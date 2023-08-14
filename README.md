@@ -52,13 +52,26 @@ The change entry for the version from the changelog.
 
 #### `last-change-version`
 
-The version number corresponding to the entry from the changelog.
+The version number corresponding to the entry from the changelog, **without**
+the `v` prefix.
 This can be passed to a release action workflow (see below).
 
 ```yaml
 - name: Last Change Version
   run: |
     echo ${{ steps.get-changelog-info.outputs.last-change-version }}
+```
+
+#### `last-change-version-v`
+
+The version number corresponding to the entry from the changelog, **including**
+the `v` prefix.
+This can be passed to a release action workflow (see below).
+
+```yaml
+- name: Last Change Version With V
+  run: |
+    echo ${{ steps.get-changelog-info.outputs.last-change-version-v }}
 ```
 
 ## Usage

@@ -37,6 +37,8 @@ jobs:
 
           Version: ${{ steps.get-changelog-info.outputs.last-change-version }}
 
+          Version-v: ${{ steps.get-changelog-info.outputs.last-change-version-v }}
+
           ```markdown
           ${{ steps.get-changelog-info.outputs.last-change-entry }}
           ```

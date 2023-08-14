@@ -20,8 +20,12 @@ outputs:
     value: ${{ steps.get-changelog-entry.outputs.changeentry }}
 
   last-change-version:
-    description: The version of the last change
-    value: ${{ steps.get-changelog-entry.outputs.changeversion }}
+    description: The version of the last change (without v-prefix)
+    value: ${{ steps.get-changelog-entry.outputs.changeversion_no_v }}
+
+  last-change-version-v:
+    description: The version of the last change (including v-prefix)
+    value: ${{ steps.get-changelog-entry.outputs.changeversion_v }}
 
 runs:
   using: composite

@@ -28,6 +28,10 @@ jobs:
         run: |
           echo ${{ steps.get-changelog-info.outputs.last-change-version }}
 
+      - name: Last Change Version-v
+        run: |
+          echo ${{ steps.get-changelog-info.outputs.last-change-version-v }}
+
       - name: Show Change Info
         shell: bash
         # yamllint disable rule:line-length

@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.1.2
+
+### Patch Changes
+
+- feat: provide version both with and without v-previx ([#61](https://github.com/chizmw/changesets-changelog-info/pull/61))
+
 ## 0.1.1
 
 ### Patch Changes

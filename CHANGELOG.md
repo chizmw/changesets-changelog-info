@@ -1,5 +1,13 @@
 # changesets-changelog-info
 
+## 0.1.3
+
+### Patch Changes
+
+- fix: update our own version usage in github actions ([#64](https://github.com/chizmw/changesets-changelog-info/pull/64))
+
+- chore: add auto-labeller to actions ([#66](https://github.com/chizmw/changesets-changelog-info/pull/66))
+
 ## 0.1.2
 
 ### Patch Changes

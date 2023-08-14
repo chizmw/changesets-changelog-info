@@ -28,7 +28,8 @@ jobs:
         if: steps.get-changelog-info.outputs.last-change-entry != ''
         with:
           body: ${{ steps.get-changelog-info.outputs.last-change-entry }}
-          tag_name: ${{ steps.get-changelog-info.outputs.last-change-version }}
-          name: ${{ steps.get-changelog-info.outputs.last-change-version }}
+          # yamllint disable-line rule:line-length
+          tag_name: ${{ steps.get-changelog-info.outputs.last-change-version-v }}
+          name: ${{ steps.get-changelog-info.outputs.last-change-version-v }}
           draft: false
           prerelease: false

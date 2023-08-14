@@ -27,7 +27,7 @@ jobs:
         shell: bash
         # yamllint disable rule:line-length
         run: |
-          latest_version="${{ steps.get-changelog-info.outputs.last-change-version }}"
+          latest_version="${{ steps.get-changelog-info.outputs.last-change-version-v }}"
           files="README.md"
 
           # replace the version "latest-v0.0.4-blue" with the latest
@@ -42,8 +42,10 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           # yamllint disable rule:line-length
-          title: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})'
-          commit-message: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}}) [skip ci]'
+          title: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version-v}})'
+          commit-message: |
+            chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version-v}})
+            [skip ci]
           base: ${{ github.event.repository.default_branch }}
           delete-branch: true
           token: ${{ secrets.CHANGESETS_TOKEN }}

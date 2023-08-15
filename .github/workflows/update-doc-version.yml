@@ -27,7 +27,7 @@ jobs:
 
       # we use ourself to get the information for the release
       - name: Get Change Info
-        uses: chizovation/changesets-changelog-info@v0.1.3
+        uses: ./
         id: get-changelog-info
 
       - name: Prepare Python

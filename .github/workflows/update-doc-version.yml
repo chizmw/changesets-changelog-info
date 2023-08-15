@@ -33,7 +33,7 @@ jobs:
           # replace the version "latest-v0.0.4-blue" with the latest
           sed -i "s/latest-v.*-blue/latest-${latest_version}-blue/g" $files
 
-          # update any doc references to ourself; chizmw/changesets-changelog-info@v0.0.4
+          # update any doc references to ourself; chizovation/changesets-changelog-info@v0.0.4
           sed -i "s/chizmw\/changesets-changelog-info@v.*/chizmw\/changesets-changelog-info@${latest_version}/g" $files
         # yamllint enable rule:line-length
 

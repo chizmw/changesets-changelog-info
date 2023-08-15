@@ -3,10 +3,15 @@ name: Update Doc Version
 
 # yamllint disable-line rule:truthy
 on:
+  # this is the trigger that really does the work
   push:
     tags:
       - v*
-  workflow_dispatch:
+  # pull_request is only here to check the behaviour without needing to merge
+  # all the time
+  pull_request:
+    branches:
+      - main
 
 jobs:
   readme-versions:
@@ -14,44 +19,75 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Setup Git User
         uses: fregante/setup-git-user@v2
 
       # we use ourself to get the information for the release
       - name: Get Change Info
-        uses: ./
+        uses: chizovation/changesets-changelog-info@v0.1.3
         id: get-changelog-info
 
-      - name: Update Version In Files
+      - name: Prepare Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+
+      - name: Bumpversion deps
+        shell: bash
+        run: |
+          pip install --no-cache-dir -U pip
+          pip install --no-cache-dir bumpversion
+
+      - name: Run Bumpversion
         shell: bash
         # yamllint disable rule:line-length
         run: |
-          latest_version="${{ steps.get-changelog-info.outputs.last-change-version-v }}"
-          files="README.md"
-
-          # replace the version "latest-v0.0.4-blue" with the latest
-          sed -i "s/latest-v.*-blue/latest-${latest_version}-blue/g" $files
-
-          # update any doc references to ourself; chizovation/changesets-changelog-info@v0.0.4
-          sed -i "s/chizmw\/changesets-changelog-info@v.*/chizmw\/changesets-changelog-info@${latest_version}/g" $files
+          export current_version="${{ steps.get-changelog-info.outputs.last-change-version }}"
+          bumpversion --verbose \
+            --allow-dirty \
+            --no-commit \
+            --no-tag \
+            --message "chore: update version in files (${current_version})" \
+            --new-version "${current_version}" \
+            patch
         # yamllint enable rule:line-length
+
+      - name: Debug Commits and Current Branch
+        run: |
+          echo "Commits:"
+          echo "===================="
+          git log --oneline --decorate --graph -n 10
+          echo "Current Branch:"
+          echo "===================="
+          git branch --show-current
+          echo "Default Branch:"
+          echo "===================="
+          echo "${{ github.event.repository.default_branch }}"
+          echo "last-change-version"
+          echo "===================="
+          echo "${{ steps.get-changelog-info.outputs.last-change-version }}"
+          echo "git diff"
+          echo "===================="
+          git diff
 
       - name: Create Pull Request
         id: create-pr
         uses: peter-evans/create-pull-request@v5
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           # yamllint disable rule:line-length
-          title: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version-v}})'
-          commit-message: |
-            chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version-v}})
-            [skip ci]
+          title: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}})'
+          commit-message: 'chore: update version in files (${{ steps.get-changelog-info.outputs.last-change-version}}) [skip ci]'
           base: ${{ github.event.repository.default_branch }}
           delete-branch: true
           token: ${{ secrets.CHANGESETS_TOKEN }}
           # yamllint enable rule:line-length
 
       - uses: peter-evans/enable-pull-request-automerge@v3
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           # yamllint disable rule:line-length
           token: ${{ secrets.CHANGESETS_TOKEN }}

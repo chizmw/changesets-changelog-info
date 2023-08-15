@@ -101,7 +101,7 @@ def do_version_output(version_no_v: str) -> None:
 def parse_args():
     parser = argparse.ArgumentParser(
         prog="Change Entry Info",
-        description="helper for chizmw/changesets-changelog-info",
+        description="helper for chizovation/changesets-changelog-info",
     )
 
     parser.add_argument(

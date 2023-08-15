@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.1.5
+
+### Patch Changes
+
+- fix: update 'update-doc-version' workflow to latest good version ([#69](https://github.com/chizovation/changesets-changelog-info/pull/69))
+
 ## 0.1.4
 
 ### Patch Changes

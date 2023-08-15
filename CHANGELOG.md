@@ -1,5 +1,11 @@
 # changesets-changelog-info
 
+## 0.1.4
+
+### Patch Changes
+
+- chore: update (old) references to chizmw to chizovation ([#67](https://github.com/chizovation/changesets-changelog-info/pull/67))
+
 ## 0.1.3
 
 ### Patch Changes

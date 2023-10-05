@@ -1,5 +1,15 @@
 # changesets-changelog-info
 
+## 0.1.6
+
+### Patch Changes
+
+- chore(deps): bump chizovation/changesets-changelog-info from 0.1.3 to 0.1.5 ([#73](https://github.com/chizovation/changesets-changelog-info/pull/73))
+
+- chore(deps): bump toshimaru/auto-author-assign from 1.6.2 to 2.0.1 ([#76](https://github.com/chizovation/changesets-changelog-info/pull/76))
+
+- chore(deps): bump actions/checkout from 3 to 4 ([#74](https://github.com/chizovation/changesets-changelog-info/pull/74))
+
 ## 0.1.5
 
 ### Patch Changes
